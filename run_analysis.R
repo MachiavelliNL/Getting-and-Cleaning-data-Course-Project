@@ -1,3 +1,7 @@
+#This code process the data found https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+#It only uses the variables from the mean and standard deviation in the data files.
+#The output is a summarized data file and a Tidy data data.frame called "DF"
+
 ##load packages
 library(dplyr)
 library(tidyr)
@@ -60,11 +64,11 @@ DF <- DF %>%
 
 
 ## create the summarized dataset
-DF1 <- group_by(DF,activity_name,subject_id,feature_name,feature_variable,feature_axial_dir)
-DF1 <- summarise(DF1,average = mean(acceleration))
+DF_sum <- group_by(DF,activity_name,subject_id,feature_name,feature_variable,feature_axial_dir)
+DF_sum <- summarise(DF1,average = mean(acceleration))
 
 ## write the summarized dataset to file
-write.table(DF1,"tidy_data.txt", row.name=FALSE, sep = ";" )  
+write.table(DF_sum,"tidy_data.txt", row.name=FALSE, sep = ";" )  
 
 
 
